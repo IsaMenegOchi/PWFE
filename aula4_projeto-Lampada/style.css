@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+header{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+button{
+    width: 100px;
+    height: 40px; /*altura normal de um button*/
+    cursor: pointer;
+}
+
+footer{
+    height: 50px;
+    justify-content: center;
+    align-items: flex-start;
+
+}
