@@ -91,3 +91,11 @@ const numeros = [2, 27, 8, 13 , 100, 12, 73]
     const paresMenor20 = numeros.filter(par).filter(numeroMenor20).reduce(numerosSoma)
     
     console.log(paresMenor20)
+
+
+//grasshopper
+
+for (var letter of 'grasshopper') {
+  console.log(letter)}
+
+ 
