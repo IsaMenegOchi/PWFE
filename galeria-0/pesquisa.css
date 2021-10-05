@@ -1,0 +1,24 @@
+.pesquisa-container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pesquisa-container input{
+    width: 80%;
+    height: 50%;
+    font-size: 1.5rem;
+    border: none;
+    padding-left: 44px;
+    outline: none;
+    border-radius: 6px;
+}
+
+.pesquisa-container::before{
+    content: '\1F50D';
+    position: absolute;
+    left: 10.3%;
+    font-size: 1.5rem;
+}

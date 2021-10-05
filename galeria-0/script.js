@@ -1,18 +1,47 @@
 "use strict"
+  //?fetch - pegar o que vem de uma api
 
-const imagens = [
-    "./img/demon-slayer.jpg",
-    "./img/giyu-tomioka.png",
-    "./img/inosuke-hashibira.jpg",
-    "./img/luas-superiores.jpg",
-    "./img/muzan-kibutsuji.png",
-    "./img/nezuko-kamado.jpg",
-    "./img/tanjiro-kamado.png",
-    "./img/zenitsu-agatsuma.jpg",
-]
+//? Caso isso fosse um objeto, deveriamos colocar como parametros nas funções imagens.nomeDaChave
+// const imagens = [
+//     "./img/demon-slayer.jpg",
+//     "./img/giyu-tomioka.png",
+//     "./img/inosuke-hashibira.jpg",
+//     "./img/luas-superiores.jpg",
+//     "./img/muzan-kibutsuji.png",
+//     "./img/nezuko-kamado.jpg",
+//     "./img/tanjiro-kamado.png",
+//     "./img/zenitsu-agatsuma.jpg",
+// ]
+
+const clear = (elemento) => {
+    while (elemento.firstChild){
+        elemento.removeChild(elemento.lastChild)
+    }
+}
+
+const pegarImagens = (raca) => fetch(`https://dog.ceo/api/breed/${raca}/images`)
+
+const procurarImagens = async (evento) => {
+    if (evento.key === "Enter"){
+
+        const raca = evento.target.value
+        const imagensResponse = await pegarImagens(raca)
+        const imagens = await imagensResponse.json()
+
+        clear(document.querySelector(".galeria-container"))
+        clear(document.querySelector(".slide-container"))
+    
+        carregarImagens(imagens.message)
+        carregarSlide(imagens.message)
+    }
+}
 
 //pega uma string e tranforma em array
-const limparId = (urlImage) => urlImage.split("/")[2].split(".")[0].replace(" ", "-").toLowerCase()
+const limparId = (urlImage) => { 
+    const posBarra = urlImage.lastIndexOf("/")+1
+    const posPonto = urlImage.lastIndexOf(".")
+    return urlImage.substring(posBarra,posPonto)
+}
 
 const criarItem = (urlImage) => {
     const container = document.querySelector(".galeria-container")
@@ -33,7 +62,7 @@ const criarSlide = (urlImage, indice, arr) => {
     if (indice > 0){
         indiceAnterior = indice -1
     }
-    else{
+    else {
         indiceAnterior = arr.length -1
     }
 
@@ -87,9 +116,8 @@ const criarSlide = (urlImage, indice, arr) => {
 
 }
 
-const carregarImagens = () => imagens.forEach(criarItem)
-const carregarSlide = () => imagens.forEach(criarSlide)
+const carregarSlide = (imagens) => imagens.forEach(criarSlide)
+const carregarImagens = (imagens) => imagens.forEach(criarItem)
 
 
-carregarImagens()
-carregarSlide()
+document.querySelector(".pesquisa-container input").addEventListener("keypress", procurarImagens)
